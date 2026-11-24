@@ -1,0 +1,6 @@
+{
+  "name": "Simpli",
+  "description": "From huh? to ohhh. Instant visual, document, and voice learning studio built for every brain.",
+  "requestFramePermissions": ["microphone"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

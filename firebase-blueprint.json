@@ -1,0 +1,328 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "UserProfile",
+      "description": "Authenticated learner profile for optional cross-device cloud sync.",
+      "type": "object",
+      "properties": {
+        "uid": {
+          "type": "string",
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "displayName": {
+          "type": "string",
+          "maxLength": 120
+        },
+        "email": {
+          "type": "string",
+          "format": "email",
+          "maxLength": 254
+        },
+        "photoURL": {
+          "type": "string",
+          "maxLength": 500
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": ["uid", "displayName", "email", "createdAt", "updatedAt"]
+    },
+    "ClarifySessionDoc": {
+      "title": "ClarifySessionDoc",
+      "description": "Saved Clarify Studio simplification card set synced by the learner.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "ownerId": {
+          "type": "string",
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "detectedTopic": {
+          "type": "string",
+          "maxLength": 200
+        },
+        "brainMode": {
+          "type": "string",
+          "maxLength": 32,
+          "enum": [
+            "adhd-turbo",
+            "easy-read",
+            "step-by-step",
+            "exam-grind",
+            "eli10",
+            "academic",
+            "teacher",
+            "friend",
+            "story"
+          ]
+        },
+        "theGist": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "madeSimple": {
+          "type": "array",
+          "description": "Up to 10 simplified takeaway bullets."
+        },
+        "examCheatcode": {
+          "type": "string",
+          "maxLength": 1500
+        },
+        "irlExample": {
+          "type": "string",
+          "maxLength": 1500
+        },
+        "extractedText": {
+          "type": "string",
+          "maxLength": 4000
+        },
+        "clientCreatedAt": {
+          "type": "string",
+          "maxLength": 64
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "id",
+        "ownerId",
+        "detectedTopic",
+        "brainMode",
+        "theGist",
+        "madeSimple",
+        "examCheatcode",
+        "irlExample",
+        "extractedText",
+        "clientCreatedAt",
+        "createdAt",
+        "updatedAt"
+      ]
+    },
+    "FlashcardDoc": {
+      "title": "FlashcardDoc",
+      "description": "Learner-saved or AI-generated active recall flashcard.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "ownerId": {
+          "type": "string",
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "question": {
+          "type": "string",
+          "maxLength": 600
+        },
+        "answer": {
+          "type": "string",
+          "maxLength": 1200
+        },
+        "difficulty": {
+          "type": "string",
+          "maxLength": 16,
+          "enum": ["Easy", "Medium", "Hard"]
+        },
+        "conceptTag": {
+          "type": "string",
+          "maxLength": 120
+        },
+        "topic": {
+          "type": "string",
+          "maxLength": 200
+        },
+        "clientCreatedAt": {
+          "type": "string",
+          "maxLength": 64
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "id",
+        "ownerId",
+        "question",
+        "answer",
+        "difficulty",
+        "conceptTag",
+        "topic",
+        "clientCreatedAt",
+        "createdAt",
+        "updatedAt"
+      ]
+    },
+    "ConfidenceLogDoc": {
+      "title": "ConfidenceLogDoc",
+      "description": "Self-rated understanding milestone for Simpli Insights.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "ownerId": {
+          "type": "string",
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "topic": {
+          "type": "string",
+          "maxLength": 200
+        },
+        "level": {
+          "type": "string",
+          "maxLength": 24,
+          "enum": ["not-yet", "getting-there", "got-it"]
+        },
+        "difficulty": {
+          "type": "string",
+          "maxLength": 24,
+          "enum": ["easy", "moderate", "challenging"]
+        },
+        "clientTimestamp": {
+          "type": "string",
+          "maxLength": 64
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "id",
+        "ownerId",
+        "topic",
+        "level",
+        "difficulty",
+        "clientTimestamp",
+        "createdAt",
+        "updatedAt"
+      ]
+    },
+    "VoiceSessionDoc": {
+      "title": "VoiceSessionDoc",
+      "description": "Metadata and summary of a saved Voice Tutor session.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "ownerId": {
+          "type": "string",
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "title": {
+          "type": "string",
+          "maxLength": 200
+        },
+        "topicTag": {
+          "type": "string",
+          "maxLength": 200
+        },
+        "brainMode": {
+          "type": "string",
+          "maxLength": 32,
+          "enum": [
+            "adhd-turbo",
+            "easy-read",
+            "step-by-step",
+            "exam-grind",
+            "eli10",
+            "academic",
+            "teacher",
+            "friend",
+            "story"
+          ]
+        },
+        "turnsCount": {
+          "type": "number"
+        },
+        "summaryText": {
+          "type": "string",
+          "maxLength": 2000
+        },
+        "clientUpdatedAt": {
+          "type": "string",
+          "maxLength": 64
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "id",
+        "ownerId",
+        "title",
+        "topicTag",
+        "brainMode",
+        "turnsCount",
+        "summaryText",
+        "clientUpdatedAt",
+        "createdAt",
+        "updatedAt"
+      ]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": { "$ref": "#/entities/UserProfile" },
+      "description": "Private learner profile document strictly isolated to the owner."
+    },
+    "/users/{userId}/clarifySessions/{sessionId}": {
+      "schema": { "$ref": "#/entities/ClarifySessionDoc" },
+      "description": "Synced Clarify Studio learning sessions owned by the user."
+    },
+    "/users/{userId}/flashcards/{cardId}": {
+      "schema": { "$ref": "#/entities/FlashcardDoc" },
+      "description": "Synced study flashcards owned by the user."
+    },
+    "/users/{userId}/confidenceLogs/{logId}": {
+      "schema": { "$ref": "#/entities/ConfidenceLogDoc" },
+      "description": "Synced confidence tracking logs owned by the user."
+    },
+    "/users/{userId}/voiceSessions/{convId}": {
+      "schema": { "$ref": "#/entities/VoiceSessionDoc" },
+      "description": "Synced Voice Tutor session summaries owned by the user."
+    }
+  }
+}
